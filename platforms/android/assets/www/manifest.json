@@ -1,0 +1,14 @@
+{
+  "name": "Restaurante",
+  "short_name": "Restaurante",
+  "theme_color": "#b51200",
+  "background_color": "#36a335",
+  "Scope": "/index.html",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

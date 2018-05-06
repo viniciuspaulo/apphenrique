@@ -1,0 +1,40 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    },
+    "phonegap-plugin-push": {
+      "FCM_VERSION": "11.6.2",
+      "PACKAGE_NAME": "br.henrique.restaurentemodelo"
+    }
+  },
+  "dependent_plugins": {}
+}
