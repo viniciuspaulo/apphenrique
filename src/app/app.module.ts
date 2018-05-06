@@ -1,64 +1,97 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, MenuController } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Push } from '@ionic-native/push';
 
-import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from "@angular/http"
-import { FeedPageModule } from "../pages/feed/feed.module";
-import { IntroPageModule } from "../pages/intro/intro.module";
 import { MoovieProvider } from '../providers/moovie/moovie';
 import { FeedPage } from "../pages/feed/feed";
-import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
-import { SobrePageModule } from '../pages/sobre/sobre.module';
-import { PerfilPageModule } from '../pages/perfil/perfil.module';
-import { FilmeDetalhesPageModule } from '../pages/filme-detalhes/filme-detalhes.module';
 import { CartolaProvider } from '../providers/cartola/cartola';
-import { AtletasPageModule } from '../pages/atletas/atletas.module';
+import { LoginPage } from '../pages/login/login';
+import { IonicStorageModule, Storage } from '@ionic/storage';
+
+
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CadastroPage } from '../pages/cadastro/cadastro';
+import { CrudProvider } from '../providers/crud/crud';
+import { RecuperaPage } from '../pages/recupera/recupera';
+import { MenuPage } from '../components/menu/menu';
+import { IntroPage } from '../pages/intro/intro';
+import { SobrePage } from '../pages/sobre/sobre';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { FilmeDetalhesPage } from '../pages/filme-detalhes/filme-detalhes';
+import { AlterarsenhaPage } from '../pages/alterarsenha/alterarsenha';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
+import { EnderecosPage } from '../pages/enderecos/enderecos';
+import { MeuspedidosPage } from '../pages/meuspedidos/meuspedidos';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    MenuPage,
+    IntroPage,
+    SobrePage,
+    PerfilPage,
+    FilmeDetalhesPage,
     ContactPage,
-    HomePage,
-    TabsPage,
-    FeedPage
+    FeedPage,
+    LoginPage,
+    CadastroPage,
+    RecuperaPage,
+
+    AlterarsenhaPage,
+    CarrinhoPage,
+    EnderecosPage,
+    MeuspedidosPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    // Importando o módulo de feed
-    // FeedPageModule,
-    IntroPageModule,
+    IonicModule.forRoot(MyApp,{
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthShortNames: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+      dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+      dayShortNames: ['D','S','T','Q','Q','S','S','D'],
+    }),
+    IonicStorageModule.forRoot({
+      name: 'bancodedados',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpModule,
-    ConfiguracoesPageModule,
-    SobrePageModule,
-    PerfilPageModule,
-    FilmeDetalhesPageModule,
-    AtletasPageModule
+    ReactiveFormsModule,
+    BrMaskerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    MenuPage,
+    IntroPage,
+    SobrePage,
+    PerfilPage,
+    FilmeDetalhesPage,
     ContactPage,
-    HomePage,
-    TabsPage,
-    FeedPage
+    FeedPage,
+    LoginPage,
+    CadastroPage,
+    RecuperaPage,
+
+    AlterarsenhaPage,
+    CarrinhoPage,
+    EnderecosPage,
+    MeuspedidosPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: LOCALE_ID, useValue: 'pt' },
     CartolaProvider,
-    // MoovieProvider
+    CrudProvider,
   ]
 })
 export class AppModule {}

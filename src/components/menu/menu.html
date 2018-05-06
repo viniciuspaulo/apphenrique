@@ -1,0 +1,28 @@
+<ion-menu [content]="content">
+  <ion-content color="white">
+      <br /><br />
+      
+      <!-- FOTO DO USUARIO -->
+      <div class="foto" (tap)="perfil()">
+        <img class="logo" src="assets/images/avatar.png" />
+      </div>
+      
+      <br /><br />
+      <ion-list class="items">
+        <button menuClose ion-item (click)="home()">
+          <ion-icon name="home"></ion-icon>
+          Dashboard
+        </button>
+        <button menuClose ion-item *ngFor="let pagina of paginas" (click)="openPage(pagina)">
+          <ion-icon name="{{pagina?.icone}}"></ion-icon>
+          {{pagina.titulo}}
+        </button>
+        <button menuClose ion-item (click)="sair()">
+          <ion-icon name="log-out"></ion-icon>
+          Sair
+        </button>
+      </ion-list>
+  </ion-content>
+
+
+</ion-menu>

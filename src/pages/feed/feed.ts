@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController, ModalController } from 'ionic-angular';
 import { MoovieProvider } from "../../providers/moovie/moovie";
 import { FilmeDetalhesPage } from '../filme-detalhes/filme-detalhes';
+import { Storage } from '@ionic/storage';
+import { CrudProvider } from '../../providers/crud/crud';
 
 /**
  * Generated class for the FeedPage page.
@@ -9,7 +11,6 @@ import { FilmeDetalhesPage } from '../filme-detalhes/filme-detalhes';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-feed',
   templateUrl: 'feed.html',
@@ -27,6 +28,7 @@ export class FeedPage {
       time_comment: "11h ago teste"
   }
 
+  public segmento = 'cardapio';
   public lista_filmes = new Array<any>();
   public page = 1;
 
@@ -35,18 +37,24 @@ export class FeedPage {
   public refresher;
   public isRefreshing: boolean = false;
   public infiniteScroll;
+  public tabBarElement:any;
 
   constructor(
+      public crud:CrudProvider, 
+      public banco:Storage, 
+      public modal:ModalController,
+      public menu:MenuController,
       public navCtrl: NavController, 
       public navParams: NavParams,
       private movieProvider: MoovieProvider,
       public loadingCtrl: LoadingController
-      ) {
+      ){
+        this.menu.enable(true);
   }
 
   abreCarregando() {
     this.loader = this.loadingCtrl.create({
-      content: "Carregando filmes..."
+      content: "Carregando..."
     });
     this.loader.present();
   }
@@ -71,8 +79,10 @@ export class FeedPage {
   }
 
   abrirDetalhes(filme){
-    console.log(filme);
-    this.navCtrl.push(FilmeDetalhesPage, { id: filme.id });
+    this.banco.get("usuario")
+    .then(usuario =>{
+      this.modal.create(FilmeDetalhesPage, { id: filme.id, usuario :usuario }).present();
+    })
   }
 
   doInfinite(infiniteScroll) {
@@ -83,34 +93,39 @@ export class FeedPage {
 
   carregarFilmes(newpage: boolean = false){
     this.abreCarregando();
-    this.movieProvider.getLatestMovies(this.page).subscribe(
-      data=>{
-          const response = (data as any);
-          const objeto_retorno = JSON.parse(response._body);
+    
 
-          if(newpage){
-            this.lista_filmes = this.lista_filmes.concat(objeto_retorno.results);
-            console.log(this.page);
-            console.log(this.lista_filmes);
-            this.infiniteScroll.complete();
-          }else{
-            this.lista_filmes = objeto_retorno.results;
-          }
+    this.banco.get("usuario")
+    .then(usuario =>{
 
-          this.fechaCarregando();
-          if(this.isRefreshing){
-              this.refresher.complete();
-              this.isRefreshing = false;
-          }
-      }, error => {
-          console.log(error);
-          this.fechaCarregando();
-          if(this.isRefreshing){
-              this.refresher.complete();
-              this.isRefreshing = false;
-          }
-      }
-    )
+
+
+      this.crud.buscar("menu",`token_user=${usuario.token}&pagina=${this.page}`)
+      .subscribe(data =>{
+            const objeto_retorno = data;
+  
+            if(newpage){
+              this.lista_filmes = this.lista_filmes.concat(objeto_retorno);
+              this.infiniteScroll.complete();
+            }else{
+              this.lista_filmes = objeto_retorno;
+            }
+  
+            this.fechaCarregando();
+            if(this.isRefreshing){
+                this.refresher.complete();
+                this.isRefreshing = false;
+            }
+        }, error => {
+            this.fechaCarregando();
+            if(this.isRefreshing){
+                this.refresher.complete();
+                this.isRefreshing = false;
+            }
+        }
+      )
+    })
+  
   }
 
 }

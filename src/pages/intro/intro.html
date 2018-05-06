@@ -7,45 +7,19 @@
 
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-slides pager>
 
-    <ion-slide class="slide_image">
-      <img src="assets/images/slide1.png" alt="">
-      <h2>Meu app Fantastico</h2>
-      <br>
-      <div>
-        <p>
-          Este meu app tera funcoes incriveis. Ele foi feito pra impressionar você.
-        </p>
-        <p>
-          Ficou curioso? <strong>Veja mais</strong>
-        </p>
+    <ion-slide class="slide_image" *ngFor="let slid of slide">
+      <img [src]="slid?.img"/>
+      <div class="conteudo">
+        <div padding>
+          <a *ngIf="slid?.pular" ion-button block (click)="login()">Login</a>
+          <br>
+          <a *ngIf="slid?.pular" ion-button block (click)="cadastro()">Cadastro</a>
+        </div>
       </div>
-
-      <a (click)="goToTabsPage()">Continuar</a>
-    </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/images/slide2.png" alt="">
-      <h2>Slide 2</h2>
-
-      <a (click)="goToTabsPage()">Continuar</a>
-    </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/images/slide3.png" alt="">
-      <h2>Slide 3</h2>
-
-      <a (click)="goToTabsPage()">Continuar</a>
-    </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/images/slide3.png" alt="">
-      <h2>Slide 4</h2>
-
-      <a (click)="goToTabsPage()">Continuar</a>
     </ion-slide>
 
   </ion-slides>

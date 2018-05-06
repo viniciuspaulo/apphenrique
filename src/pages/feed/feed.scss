@@ -1,10 +1,31 @@
 page-feed {
+    .segment{
+        background-color: #fff;
+    }
+    .segment-button{
+        border-radius: 0px;
+    }
+    .bar-buttons, .bar-buttons .icon{
+        color: #fff;
+    }
+    .fab ion-icon, .toolbar-content{
+        color: #fff;
+    }
     h2.feed_title {
         color: red;
         font-weight: bold;
     }
-
+    .button.button-round{
+        padding: 13px;
+    }
     p.feed_date {
         color: green;
+    }
+    .item-feed{
+        padding: 5px 0px;
+        border-bottom: 1px solid #ccc;
+    }
+    .foto{
+        border-radius: 5px;
     }
 }

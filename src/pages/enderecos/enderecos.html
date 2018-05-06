@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    
+    <ion-title>Meus Endereços</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <iframe *ngIf="url" [src]="url" frameborder="0" width="100%" height="100%"></iframe>
+</ion-content>

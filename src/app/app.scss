@@ -14,3 +14,30 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+*,html,body{
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+}
+.toolbar-background{
+    background-color: map-get($colors, primary);
+}
+.toolbar-title{
+    color: #fff;
+}
+.header.no-header{
+    .toolbar-background{
+        background-color: map-get($colors, primary);
+        border: none;
+    }
+}
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    border: none;
+    background: none;
+}
+.bar-buttons-md[end],.bar-button-menutoggle,.bar-buttons{
+    padding: 0px 5px;
+    color: #fff;
+    .icon{
+        font-size: 2em;
+    }
+}

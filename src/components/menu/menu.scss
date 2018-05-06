@@ -1,0 +1,41 @@
+menu {
+    .content{
+        background-image: url(../assets/images/foto5.jpg);
+        background-size: auto 100%;
+        background-position-x: 62%;
+    }
+    .fixed-content{
+        background-color: rgba(45, 42, 42, 0.88);
+    }
+    .list .item:nth-child(even), .list .item {
+        background: rgba(0,0,0,0);
+        color: white;
+    }
+    h4{
+        color: #fff;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .foto{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100px;
+        .logo{
+            width: 100px;
+            padding: 5px;
+            border-radius: 50%;
+            padding: 5px;
+            border: 1px solid #fff;
+        }
+    }
+
+    .label-md{
+        display: flex;
+        align-items: center;
+        img, .icon{
+            margin-right: 10px;
+        }
+    }
+}

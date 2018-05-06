@@ -1,5 +1,18 @@
 page-intro {
-    .slide_image img {
-        width: 240px;
+    .slide-zoom {
+        height: 100vh;
+        img{
+            height: 100vh;
+            width: 100vw;
+        }
+        .conteudo{
+            position: absolute;
+            top: 45%;
+            width: 100%;
+            padding: 0px 10px;
+            a,h2,p{
+                color: #fff;
+            }
+        }
     }
 }

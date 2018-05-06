@@ -5,57 +5,76 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
+  
   <ion-navbar>
-    <ion-title>Feed</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Menu</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only>
+            <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
+
+  <ion-segment [(ngModel)]="segmento">
+    <ion-segment-button value="cardapio">
+      Cardapio
+    </ion-segment-button>
+    <ion-segment-button value="finalizar">
+      Finalizar Pedido
+    </ion-segment-button>
+    <ion-segment-button value="endereco">
+      Meus Endereços
+    </ion-segment-button>
+  </ion-segment>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <div [ngSwitch]="segmento">
+    <div *ngSwitchCase="'cardapio'">
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
 
-  <ion-card *ngFor="let filme of lista_filmes">
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/images/avatar.png">
-      </ion-avatar>
-      <h2 class="feed_title">{{ filme.original_title }}</h2>
-      <p class="feed_date">{{ filme.release_date }}</p>
-    </ion-item>
+        <ion-row *ngFor="let filme of lista_filmes" class="item-feed" (tap)="abrirDetalhes(filme)">
+          <ion-col col-8>
+            <h4>{{ filme?.titulo }}</h4>
+            <p>{{ filme?.descricao }}</p>
+            <p style="color: red;margin: 0px">{{filme?.valor | currency:'BRL':true}}</p>
+          </ion-col>
+      
+          <ion-col col-4>
+            <img [src]="filme?.imagem" class="foto" />
+          </ion-col>
 
-    <img [src]="'https://image.tmdb.org/t/p/w300/' + filme.backdrop_path">
+        </ion-row>
 
-    <ion-card-content>
-      <p>{{ filme.overview }}</p>
-    </ion-card-content>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+  </div>
+</ion-content>
 
+<ion-footer>
+  <ion-toolbar>
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{ objeto_feed.qntd_likes }} Likes</div>
-      </button>
+        <button ion-button color="light" small outline>
+          Finalizar Pedido
+        </button>
       </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>{{ objeto_feed.qntd_comments }} Comments</div>
-      </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          {{ objeto_feed.time_comment }}
-        </ion-note>
+      <ion-col col-4>
+        Item 1 <br>
+        R$ 20.00
       </ion-col>
     </ion-row>
-    <button ion-button block (click)="abrirDetalhes(filme)">Detalhes</button>
-  </ion-card>
-
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-content>
+  </ion-toolbar>
+</ion-footer>

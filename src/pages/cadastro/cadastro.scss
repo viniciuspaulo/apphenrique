@@ -1,0 +1,69 @@
+page-cadastro {
+    .back-button{
+        color: #fff;
+    }
+    .toolbar-background{
+        background-color: rgba(0, 0, 0, 0.35) !important;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .toolbar-title{
+        color: #fff;
+    }
+    .item{
+        box-shadow:  none !important;
+        background-color: rgba(0,0,0,0);
+        .item-inner{
+            box-shadow:  none !important;
+            padding: 5px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.25);
+        }
+    }
+    .input-has-focus
+    .input-cover {
+            display: none;
+    }
+    .content{
+        background-image: url('../assets/images/login.png');
+        background-repeat: no-repeat;
+        background-size:100%;
+    }
+
+    .fixed-content{
+        background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    .filtro{
+        margin-top: 30%;
+        .logo-view{
+            width: 100%;
+            p{
+                color: #fff;
+                font-size: 2em;
+                text-align: center;
+            }
+        }
+        .icon{
+            color: #fff;
+            font-size: 1.5em;
+        }
+        ::placeholder{
+            color: #fff;
+            font-weight: bolder;
+        }
+        .text-input{
+            color: #fff;
+        }
+
+        .termos{
+            margin-top: 5%;
+            text-align: center;
+            width: 100%;
+            a{
+                color: #fff;
+            }
+        }
+    }
+}
